@@ -1,0 +1,83 @@
+{
+"$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+"type": "AdaptiveCard",
+"version": "1.5",
+"body": [
+{
+"type": "Container",
+"style": "emphasis",
+"items": [
+{
+"type": "TextBlock",
+"text": "AI GOVERNANCE & STATUTORY PRIVACY REVIEW GATE (STAGE 2)",
+"weight": "Bolder",
+"color": "Attention",
+"size": "Small"
+},
+{
+"type": "TextBlock",
+"text": "{{CONTEXT_SUMMARY}}",
+"wrap": true,
+"size": "Small"
+}
+]
+},
+{
+"type": "TextBlock",
+"text": "AI Guidance: Critically evaluate and edit the AI-generated draft below. Your modifications and final approval generate an immutable, auditable human accountability record.",
+"wrap": true,
+"isSubtle": true,
+"spacing": "Medium"
+},
+{
+"type": "Input.Text",
+"id": "stateB_editedText",
+"label": "Human-Validated Final Output (State B)",
+"isMultiline": true,
+"isRequired": true,
+"errorMessage": "Final validated text cannot be empty.",
+"value": "{{STATE_A_ESCAPED}}"
+},
+{
+"type": "Input.Text",
+"id": "reviewer_rationale",
+"label": "Deliberation / Policy Override Note (Optional)",
+"isMultiline": false,
+"placeholder": "Note any policy corrections, factual edits, or context added..."
+},
+{
+"type": "Input.ChoiceSet",
+"id": "statutory_attestation",
+"style": "expanded",
+"isMultiSelect": true,
+"isRequired": true,
+"errorMessage": "You must check the human review attestation before approving.",
+"choices": [
+{
+"title": "I attest that I have reviewed and verified this AI-assisted draft for accuracy, institutional policy, and statutory privacy compliance.",
+"value": "attested"
+}
+]
+}
+],
+"actions": [
+{
+"type": "Action.Submit",
+"title": "Approve & Commit State B",
+"style": "positive",
+"associatedInputs": "auto",
+"data": {
+"decision": "Approved"
+}
+},
+{
+"type": "Action.Submit",
+"title": "Reject / Escalate",
+"style": "destructive",
+"associatedInputs": "none",
+"data": {
+"decision": "Rejected"
+}
+}
+]
+}
